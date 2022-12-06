@@ -26,7 +26,8 @@ class ModeloAdministradorMedico
             INNER JOIN cargo_medico car ON car.id_cargo = m.id_cargo
             INNER JOIN especialidad_medico esme ON esme.id_medico = m.id_medico 
             INNER JOIN especialidad es ON es.id_especialidad = esme.id_especialidad
-            ORDER BY m.nombre_medico ASC';
+            WHERE m.id_medico NOT IN(410) 
+            ORDER BY m.nombre_medico ASC ';
             $stm = $this->PDO->ConectarBD()->prepare($sql);
             $stm->execute();
             return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -40,12 +41,12 @@ class ModeloAdministradorMedico
     {
         try {
             $sql = 'SELECT * FROM medico m 
-             INNER JOIN consultorio c ON c.id_consultorio = m.id_consultorio
-             INNER JOIN compania com ON com.id_compania = m.id_compania
-             INNER JOIN estado_medico estame ON estame.id_estado_medico = m.id_estado_medico
-             INNER JOIN cargo_medico car ON car.id_cargo = m.id_cargo 
-             INNER JOIN usuario usu ON usu.id_usuario = m.id_usuario
-             WHERE car.id_cargo in(1)';
+            INNER JOIN consultorio c ON c.id_consultorio = m.id_consultorio
+            INNER JOIN compania com ON com.id_compania = m.id_compania
+            INNER JOIN estado_medico estame ON estame.id_estado_medico = m.id_estado_medico
+            INNER JOIN cargo_medico car ON car.id_cargo = m.id_cargo 
+            INNER JOIN usuario usu ON usu.id_usuario = m.id_usuario
+            WHERE car.id_cargo in(1) ORDER BY m.nombre_medico ASC';
             $stm = $this->PDO->ConectarBD()->prepare($sql);
             $stm->execute();
             return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -72,9 +73,13 @@ class ModeloAdministradorMedico
     public function activarMedicoCargo($txt_id_medico_dependiente, $id_usuario_titular)
     {
         try {
-            $sql = 'UPDATE medico m SET m.id_usuario =? WHERE m.id_medico=?';
-            $stm = $this->PDO->ConectarBD()->prepare($sql);
-            $stm->execute(array($id_usuario_titular, $txt_id_medico_dependiente));
+            $sql = "UPDATE medico m SET m.id_usuario =? WHERE m.id_medico=?";
+            $stm = $this->PDO->ConectarBD()->prepare($sql)->execute(
+                array(
+                    $id_usuario_titular,
+                    $txt_id_medico_dependiente
+                )
+            );
             return $stm;
         } catch (Exception $th) {
             echo $th->getMessage();

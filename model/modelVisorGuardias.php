@@ -76,4 +76,11 @@ class ModeloVisorGuardias
         $meseSiguiente =  $meses[date('n-') - 1];
         return $meseSiguiente;
     }
+
+    public function mesAnterior()
+    {
+        $meses = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+        $meseSiguiente =  $meses[date('n-') - 2];
+        return $meseSiguiente;
+    }
 }

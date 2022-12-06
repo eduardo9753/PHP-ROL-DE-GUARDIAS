@@ -9,7 +9,7 @@
     <!-- Main Content -->
     <div id="content">
         <!-- Topbar -->
-        
+
         <!-- End of Topbar -->
 
 
@@ -33,7 +33,8 @@
                                     <tr>
                                         <th scope="col">N°</th>
                                         <th scope="col">ESPECIALIDAD</th>
-                                        <th scope="col">ACCION</th>
+                                        <th scope="col"><?php echo $mes ?></th>
+                                        <th scope="col"><?php echo $mesSiguiente ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,7 +45,16 @@
                                             <td>
                                                 <form action="visorMedicoGuardias" method="POST">
                                                     <input type="text" name="txt_id_especialidad" id="txt_id_especialidad" value="<?php echo $data->id_especialidad ?>" hidden>
+                                                    <input type="text" name="flag_mes" id="flag_mes" value="1" hidden>
                                                     <button type="submit" name="btn-ver-guardias" id="btn-ver-guardias" class="btn btn-outline-warning"><i class='bx bxs-right-arrow bx-fade-left'></i></button>
+                                                </form>
+                                            </td>
+
+                                            <td>
+                                                <form action="visorMedicoGuardias" method="POST">
+                                                    <input type="text" name="txt_id_especialidad" id="txt_id_especialidad" value="<?php echo $data->id_especialidad ?>" hidden>
+                                                    <input type="text" name="flag_mes" id="flag_mes" value="2" hidden>
+                                                    <button type="submit" name="btn-ver-guardias" id="btn-ver-guardias" class="btn btn-outline-success"><i class='bx bxs-right-arrow bx-fade-left'></i></button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -127,8 +127,9 @@ class ControlEventoAdministradorMedico
             }
 
             $i = 0;
-            $txt_id = $_POST['txt_id']; 
+            $txt_id = $_POST['txt_id'];
             $txt_nombre_medico = $_POST['txt_nombre_medico'];
+            $txt_nombre_especialidad = $_POST['txt_nombre_especialidad'];
             $titulo = "Actualizar Especialidad";
             $dataEspecialidad = $this->ADMINMEDICO->DataEspecialidades();
             include_once('view/administrador/medico/editarEspecialidadMedico.php');
@@ -152,9 +153,19 @@ class ControlEventoAdministradorMedico
             $save = $this->MODEL->updateEspecialidadMedico($especialidadMedico);
 
             if ($save) {
-                echo "<script>alert('ESPECIALIDAD ACTUALIZADA CORRECTAMENTE: $usuario!'); window.location='Medico'</script>";
-            } else {
-                echo "<script>alert('ESPECIALIDAD NO ACTUALIZADA CORRECTAMENTE :( COMUNICAR AL AREA DE SISTEMAS: $usuario!'); window.location='Medico'</script>";
+
+                if($_POST['FLG_ESPECIALIDAD'] == '1'){
+                    echo "<script>alert('ESPECIALIDAD ACTUALIZADA CORRECTAMENTE: $usuario!'); window.location='Medico'</script>";
+                } else {
+                    echo "<script>alert('ESPECIALIDAD ACTUALIZADA CORRECTAMENTE: $usuario!'); window.location='listaEspecialidad'</script>";
+                }
+                
+            } else { 
+                if($_POST['FLG_ESPECIALIDAD'] == '1'){
+                    echo "<script>alert('ESPECIALIDAD ACTUALIZADA CORRECTAMENTE: $usuario!'); window.location='Medico'</script>";
+                } else {
+                    echo "<script>alert('ESPECIALIDAD ACTUALIZADA CORRECTAMENTE: $usuario!'); window.location='listaEspecialidad'</script>";
+                }
             }
         } catch (Exception $th) {
             echo  $th->getMessage();
@@ -170,7 +181,6 @@ class ControlEventoAdministradorMedico
 
             $txt_id_medico_dependiente = $_POST['txt_id_medico_dependiente'];
             $txt_codigo_titular = $_POST['txt_codigo_titular'];
-
             $dataUsuarioMedicoTitular = $this->ADMINMEDICO->UsuarioPorCodigoMedico($txt_codigo_titular);
             $id_usuario_titular = $dataUsuarioMedicoTitular->id_usuario;
 

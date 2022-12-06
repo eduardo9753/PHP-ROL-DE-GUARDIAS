@@ -1,23 +1,28 @@
 <?php
 
 include_once('model/modelVisorGuardias.php');
+include_once('model/modelAseets.php');
 
 
 class ControlVisorGuardias
 {
     public $MODELGUARDIAS;
+    public $ASSET;
 
     public function __construct()
     {
         $this->MODELGUARDIAS = new ModeloVisorGuardias();
+        $this->ASSET = new ModeloAssets();
     }
 
     public function MedicoEspecialidad()
     {
         try {
-           
+
             $titulo = "ESPECIALIDADES";
             $dataMedicoEspecialidad =  $this->MODELGUARDIAS->dataMedicosTitulares();
+            $mes = $this->ASSET->mesActualCadena();
+            $mesSiguiente = $this->ASSET->mesAnteriorCadena();
             $i = 0;
             include_once('view/guardias/guardias.php');
         } catch (Exception $th) {
@@ -47,7 +52,12 @@ class ControlVisorGuardias
             }
             $titulo = "GUARDIAS";
             $txt_id_especialidad = $_POST['txt_id_especialidad'];
-            $mes = Date('Y') . '-' . $this->MODELGUARDIAS->mesActual();
+            if ($_POST['flag_mes'] == '1') {
+                $mes = Date('Y') . '-' . $this->MODELGUARDIAS->mesActual();
+            } else {
+                $mes = Date('Y') . '-' . $this->MODELGUARDIAS->mesAnterior();
+            }
+
             include_once('view/guardias/visorGuardias.php');
         } catch (Exception $th) {
             echo $th->getMessage();

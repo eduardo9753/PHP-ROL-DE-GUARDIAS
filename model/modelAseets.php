@@ -37,7 +37,7 @@ class ModeloAssets
             foreach ($intervalo as $valor) :
                 $tiempo[] = $valor;
             endforeach;
-  
+
             $dia = $tiempo[2]; //accede al dia : [0] -> 2
             $datos = array();
 
@@ -238,23 +238,40 @@ class ModeloAssets
     //PINTA NUMERO DEL MES SIGUIENTE
     public function mesSiguiente()
     {
-        $meses = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-        $meseSiguiente =  $meses[date('n')];
+        if (date("m") == "12") {
+            $meseSiguiente = "01";
+        } else {
+            $meses = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+            $meseSiguiente =  $meses[date('n')];
+        }
         return $meseSiguiente;
     }
 
     public function mesActual()
     {
         $meses = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-        $meseSiguiente =  $meses[date('n-') - 1];
+        $meseSiguiente =  $meses[date('n') - 1];
         return $meseSiguiente;
     }
+
+    public function mesAnterior()
+    {
+        $meses = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+        $meseSiguiente =  $meses[date('n') - 2];
+        return $meseSiguiente;
+    }
+
+
 
     //PINTA NOMBRE DEL MES SIGUIENTE
     public function mesSiguienteCadena()
     {
-        $meses = array("ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE");
-        $meseSiguiente =  $meses[date('n')];
+        if (date("m") == "12") {
+            $meseSiguiente = "ENERO";
+        } else {
+            $meses = array("ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE");
+            $meseSiguiente =  $meses[date('n')];
+        }
         return $meseSiguiente;
     }
 
@@ -266,16 +283,29 @@ class ModeloAssets
         return $mesActual;
     }
 
+    public function mesAnteriorCadena()
+    {
+        $meses = array("ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE");
+        $mesActual = $meses[date('n') - 2];
+        return $mesActual;
+    }
+
     //DEVUELVE AÑO SIGUIENTE
     public function anioSiguiente()
     {
         $anio_actual = date("Y");
         //sumo 1 año
-        $anio_actual = date("Y", strtotime($anio_actual . "+ 1 year"));
-        $anio_actual = Date('Y');
-        $anio_actual =  $anio_actual . "-" . $anio_actual;
+        $anio_siguiente = date("Y", strtotime($anio_actual . "+ 1 year"));
+        return $anio_siguiente;
+    }
+
+
+    public function anioActual()
+    {
+        $anio_actual = date("Y");
         return $anio_actual;
     }
+
 
     //ME DEVUELVE EL ULTIMO ID DE LA USUARIO
     public function lastIdUsuario($tabla)

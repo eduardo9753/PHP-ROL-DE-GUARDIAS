@@ -54,7 +54,7 @@
                                                     <form action="MedicoCargo" method="POST">
                                                         <input type="text" name="txt_nombre_medico_dependiente" id="txt_nombre_medico_dependiente" value="<?php echo $data->nombre_medico ?>" hidden>
                                                         <input type="text" name="txt_id_medico_dependiente" id="txt_id_medico_dependiente" value="<?php echo $data->id_medico ?>" hidden>
-                                                        <button class="btn btn-outline-primary btn-user" name="btn-asignar-cargo" id="btn-asignar-cargo">Asignar</button>
+                                                        <button class="btn btn-outline-primary btn-user" name="btn-asignar-cargo" id="btn-asignar-cargo" title="ASIGNAR MEDICO DEPENDIENTE A UN MEDICO TUTULAR">Asignar</button>
                                                     </form>
                                                 <?php endif ?>
                                             </td>
@@ -62,7 +62,7 @@
                                                 <form action="dataEspecialidadMedicoEditar" method="POST">
                                                     <input type="text" name="txt_nombre_medico" id="txt_nombre_medico" value="<?php echo $data->nombre_medico ?>" hidden>
                                                     <input type="text" name="id_medico" id="id_medico" value="<?php echo $data->id_medico ?>" hidden>
-                                                    <button class="btn btn-outline-danger btn-user" name="btn-editar-especialidad" id="btn-editar-especialidad">Especialidad</button>
+                                                    <button class="btn btn-outline-danger btn-user" name="btn-editar-especialidad" id="btn-editar-especialidad" title="ACTUALIZAR LA ESPECIALIDAD DEL MEDICO">Especialidad</button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -33,13 +33,22 @@
                                         <div class="form-group">
                                             <label class="form-control-label">MEDICO</label>
                                             <input type="text" name="txt_id" id="txt_id" value="<?php echo $txt_id ?>" hidden>
+                                            <input type="text" name="FLG_ESPECIALIDAD" id="FLG_ESPECIALIDAD" value="1" hidden>
                                             <input type="text" name="txt_nombre_medico" id="txt_nombre_medico" value="<?php echo $txt_nombre_medico ?>" class="form-control" readonly>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label">ESPECIALIDAD ACTUAL</label>
+                                            <input type="text" name="" id="" value="<?php echo $txt_nombre_especialidad ?>" class="form-control" readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="form-control-label">ASIGNE ESPECIALIDAD</label>
+                                            <label class="form-control-label">ASIGNE LA NUEVA ESPECIALIDAD A ACTUALIZAR</label>
                                             <select class="form-control" name="txt_especialidad" id="txt_especialidad">
                                                 <?php foreach ($dataEspecialidad as $data) : ?>
                                                     <option value="<?php echo $data->id_especialidad ?>"><?php echo $data->nombre_especialidad ?></option>

@@ -49,7 +49,8 @@
                                                     <input type="text" name="txt_id" id="txt_id" value="<?php echo $data->id ?>" hidden>
                                                     <input type="text" name="id_medico" id="id_medico" value="<?php echo $data->id_medico ?>" hidden>
                                                     <input type="text" name="txt_nombre_medico" id="txt_nombre_medico" value="<?php echo $data->nombre_medico ?>" hidden>
-                                                    <button class="btn btn-outline-danger btn-user" name="btn-editar-especialidad" id="btn-editar-especialidad">Especialidad</button>
+                                                    <input type="text" name="txt_nombre_especialidad" id="txt_nombre_especialidad" value="<?php echo $data->nombre_especialidad ?>" hidden>
+                                                    <button class="btn btn-outline-danger btn-user" name="btn-editar-especialidad" id="btn-editar-especialidad">Actualizar</button>
                                                 </form>
                                             </td>
                                         </tr>

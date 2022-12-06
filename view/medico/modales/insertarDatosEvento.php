@@ -17,11 +17,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="">Titulo</label>
-                <input type="text" class="form-control" id="txt_titulo" name="txt_titulo" value="<?php
-
-                                                                                                  use PhpOffice\PhpSpreadsheet\Shared\Date;
-
-                                                                                                  echo $_SESSION['nombre_medico'] ?>" readonly>
+                <input type="text" class="form-control" id="txt_titulo" name="txt_titulo" value="<?php echo $_SESSION['nombre_medico'] ?>" readonly>
               </div>
             </div>
             <!--<div class="col-md-12">

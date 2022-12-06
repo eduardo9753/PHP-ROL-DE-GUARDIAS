@@ -65,7 +65,12 @@ class ControlEventoAdministrador
             $ruta = 'RegistradosMesSiguiente';
             $show_medico_mes_siguiente = 'show';
             $active_medico_mes_siguiente = 'active';
-            $mesSIGUIENTE = Date('Y') . '-' . $this->ASSET->mesSiguiente();
+            if (date('m') == '12') {
+                $mesSIGUIENTE = $this->ASSET->anioSiguiente() . '-' . $this->ASSET->mesSiguiente();
+            } else {
+                $mesSIGUIENTE = Date('Y') . '-' . $this->ASSET->mesSiguiente();
+            }
+
             $mesSiguienteCadena = $this->ASSET->mesSiguienteCadena();
             $dataMedicoMesSiguiente = $this->ADMIN->dataMedicoEstado(1, $mesSIGUIENTE);
             $titulo = "Registro de Horarios Medicos Estado : REGISTRADO - " . $mesSiguienteCadena;
@@ -105,7 +110,12 @@ class ControlEventoAdministrador
             $ruta = 'AprobadosMesSiguiente';
             $show_medico_mes_siguiente = 'show';
             $active_medico_mes_siguiente = 'active';
-            $mesSIGUIENTE = Date('Y') . '-' . $this->ASSET->mesSiguiente();
+            if (date('m') == '12' && date("Y")) {
+                $mesSIGUIENTE = $this->ASSET->anioSiguiente() . '-' . $this->ASSET->mesSiguiente();
+            } else {
+                $mesSIGUIENTE = Date('Y') . '-' . $this->ASSET->mesSiguiente();
+            }
+
             $mesSiguienteCadena = $this->ASSET->mesSiguienteCadena();
             $dataMedicoMesSiguiente = $this->ADMIN->dataMedicoEstado(2, $mesSIGUIENTE);
             $titulo = "Registro de Horarios Medicos Estado : APROBADOS - " . $mesSiguienteCadena;
@@ -143,9 +153,12 @@ class ControlEventoAdministrador
             $ruta = 'RechazadosMesSiguiente';
             $show_medico_mes_siguiente = 'show';
             $active_medico_mes_siguiente = 'active';
-
             $i = 0;
-            $mesSIGUIENTE = Date('Y') . '-' . $this->ASSET->mesSiguiente();
+            if (date('m') == '12') {
+                $mesSIGUIENTE = $this->ASSET->anioSiguiente() . '-' . $this->ASSET->mesSiguiente();
+            } else {
+                $mesSIGUIENTE = Date('Y') . '-' . $this->ASSET->mesSiguiente();
+            }
             $mesSiguienteCadena = $this->ASSET->mesSiguienteCadena();
             $dataMedicoMesSiguiente = $this->ADMIN->dataMedicoEstado(3, $mesSIGUIENTE);
             $titulo = "Registro de Horarios Medicos Estado : RECHAZADOS - " . $mesSiguienteCadena;
@@ -277,6 +290,7 @@ class ControlEventoAdministrador
                 }
                 $data = $this->ADMIN->medicoByNombre($nombre_medico);
             }
+
             include_once('view/administrador/calendario/calendario.php');
         } catch (Exception $th) {
             echo $th->getMessage();
